@@ -12,7 +12,18 @@ with urllib.urlopen(url2) as jsondata1:
 data1 = data1['DailyOperationalStatisticsOfReservoirs_OPENDATA']
 data2 = data2['ReservoirConditionData_OPENDATA']
 
+CapFull = 0
+CapNow  = 0
+Time = ""
 for d in data1:
-    print("{}:Capacity:{},FullLevel:{}".format(d['ReservoirName'],d['EffectiveCapacity'],d['FullWaterLevel']))
+    if d['ReservoirName'] == '石門水庫':
+        CapFull = float(d['EffectiveCapacity']) 
+#        print("{}:Capacity:{},FullLevel:{}".format(d['ReservoirName'],d['EffectiveCapacity'],d['FullWaterLevel']))
 for d in data2:
-    print("{}:WaterLevel:{},StorageCapacity:{}".format(d['ReservoirIdentifier'],d['WaterLevel'],d['EffectiveWaterStorageCapacity']))
+    if d['ReservoirIdentifier']=='10201':
+        Time = d['ObservationTime']
+        CapNow = float(d['EffectiveWaterStorageCapacity'])
+#        print("{}:{}:WaterLevel:{},StorageCapacity:{}".format(d['ObservationTime'],d['ReservoirIdentifier'],d['WaterLevel'],d['EffectiveWaterStorageCapacity']))
+
+
+print("石門水庫:\t{:04.2f} % \tat \t{}".format((CapNow/CapFull*100),Time))

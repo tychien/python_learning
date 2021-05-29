@@ -27,12 +27,12 @@ def getData():
             CapNow = float(d['EffectiveWaterStorageCapacity'])
 
     Percentage = (CapNow/CapFull*100)
-    label.config(text='Time:{}\nPercentage:\t{:04.2f} %'.format(Time,Percentage))
+    label.config(text='更新時間:{}\nPercentage:\t{:04.2f} % \n{}萬立方公尺'.format(Time,Percentage,CapNow))
 
 root = tk.Tk() 
 root.geometry('480x270')
 
-tk.Label(root,text='石門水庫',fg='white',bg='lightblue').pack() 
+tk.Label(root,text='石門水庫',fg='white',bg='lightblue').pack(fill=tk.BOTH) 
 tk.Button(root,text='Update Now',bg='red',command=getData).pack()
 label = tk.Label(root)
 

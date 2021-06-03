@@ -27,10 +27,10 @@ def getData():
     Time = ""
 
     for d in data1:
-        if d['ReservoirName'] == '石門水庫':
+        if d['ReservoirName'] == '寶山第二水庫':
             CapFull = float(d['EffectiveCapacity'])
     for d in data2:
-        if d['ReservoirIdentifier']=='10201':
+        if d['ReservoirIdentifier']=='10405':
             Time = d['ObservationTime']
             T = Time.replace('T','\n')
             CapNow = float(d['EffectiveWaterStorageCapacity'])
@@ -48,11 +48,11 @@ def getData():
     line1.get_tk_widget().pack(side=LEFT, fill=BOTH)
     df1 = df1[['Time','Percent']].groupby('Time').sum()
     df1.plot(kind='line', legend=True, ax=ax1, color='b',marker='o', fontsize=10,rot=270)
-    ax1.set_title('Shimen Reservoir')
+    ax1.set_title('BaoShan Second Reservoir')
 root = tk.Tk()
 root.geometry('480x600')
 
-tk.Label(root,text='石門水庫',fg='white',bg='lightblue').pack(fill=tk.BOTH)
+tk.Label(root,text='寶山第二水庫',fg='white',bg='lightblue').pack(fill=tk.BOTH)
 tk.Button(root,text='Update Now',bg='red',command=getData).pack()
 label = tk.Label(root)
 
